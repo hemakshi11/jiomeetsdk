@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EventManager, IJMRemotePeer, JMClient } from '@jiomeet/core-sdk-web';
+import { EventManager, IJMRemotePeer, JMClient, IJMInfoEventTypes, IJMMediaSetting } from '@jiomeet/core-sdk-web';
 
 @Component({
   selector: 'app-main-video-call',
