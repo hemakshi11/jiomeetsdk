@@ -13,10 +13,10 @@ export class MainVideoCallComponent {
 isAudioMuted = true;
 isVideoMuted = true;
 
-const jmClient = new JMClient();
+jmClient = new JMClient();
 
 // Register event before calling join meeting
-const unsubscribe = EventManager.onEvent((eventInfo) => {
+unsubscribe = EventManager.onEvent(async (eventInfo) => {
 	const { data } = eventInfo;
 	switch (eventInfo.type) {
 		case IJMInfoEventTypes.PEER_JOINED:
@@ -61,9 +61,9 @@ const unsubscribe = EventManager.onEvent((eventInfo) => {
 });
 
 // Call the joinMeeting method to start the meeting
-async function joinMeeting() {
+async joinMeeting() {
 	try {
-		const userId = jmClient.joinMeeting({
+		const userId = this.jmClient.joinMeeting({
 			meetingId: '12345678',
 			meetingPin: 'abcd2',
 			userDisplayName: 'John',
@@ -78,31 +78,31 @@ async function joinMeeting() {
 }
 
 // Mute/unMute Local Audio
-async function toggleMuteAudio() {
+async toggleMuteAudio() {
 	try {
-		isAudioMuted = !isAudioMuted;
-		await JMClient.muteLocalAudio(isAudioMuted);
-		console.log(`Local audio ${isAudioMuted ? 'muted' : 'unmuted'}`);
+		this.isAudioMuted = !this.isAudioMuted;
+		await JMClient.muteLocalAudio(this.isAudioMuted);
+		console.log(`Local audio ${this.isAudioMuted ? 'muted' : 'unmuted'}`);
 	} catch (error) {
 		console.error(error);
 	}
 }
 
 // Mute/unMute Local Video
-async function toggleMuteVideo() {
+async toggleMuteVideo() {
 	try {
-		isVideoMuted = !isVideoMuted;
-		await JMClient.muteLocalVideo(isVideoMuted);
-		console.log(`Local video ${isVideoMuted ? 'muted' : 'unmuted'}`);
+		this.isVideoMuted = !this.isVideoMuted;
+		await JMClient.muteLocalVideo(this.isVideoMuted);
+		console.log(`Local video ${this.isVideoMuted ? 'muted' : 'unmuted'}`);
 	} catch (error) {
 		console.error(error);
 	}
 }
 
 // Starting screen share
-async function startScreenShare() {
+async startScreenShare() {
 	try {
-		const screenShareTrack = await jmClient.startScreenShare();
+		const screenShareTrack = await this.jmClient.startScreenShare();
 		// Do something with the screenShareTrack object
 	} catch (error) {
 		console.log('Failed to start screen share', error);
@@ -110,9 +110,9 @@ async function startScreenShare() {
 }
 
 // Stopping screen share
-async function stopScreenShare() {
+async stopScreenShare() {
 	try {
-		await jmClient.stopScreenShare();
+		await this.jmClient.stopScreenShare();
 		// Screen share stopped successfully
 	} catch (error) {
 		console.log('Failed to stop screen share', error);
