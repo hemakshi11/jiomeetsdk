@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { EventManager, IJMRemotePeer, JMClient, IJMInfoEventTypes, IJMMediaSetting } from '@jiomeet/core-sdk-web';
+import { EventManager, IJMRemotePeer, JMClient, IJMInfoEventTypes, IJMMediaSetting, IJMJoinMeetingParams, IJMLocalAudioTrack, IJMLocalPeer, IJMLocalScreenShareTrack, IJMLocalVideoTrack, IJMPreviewManager, IJMRemoteAudioTrack, IJMRemoteScreenShareTrack, IJMRemoteVideoTrack, IJMRequestMediaType } from '@jiomeet/core-sdk-web';
+import { async } from 'rxjs';
 
 @Component({
   selector: 'app-main-video-call',
@@ -12,6 +13,9 @@ export class MainVideoCallComponent {
 
 isAudioMuted = true;
 isVideoMuted = true;
+remotePeers!: IJMRemotePeer[];
+localPeer: IJMLocalPeer | undefined;
+roomMediaSetting!: IJMMediaSetting;
 
 jmClient = new JMClient();
 
@@ -81,7 +85,7 @@ async joinMeeting() {
 async toggleMuteAudio() {
 	try {
 		this.isAudioMuted = !this.isAudioMuted;
-		await JMClient.muteLocalAudio(this.isAudioMuted);
+		await this.jmClient.muteLocalAudio(this.isAudioMuted);
 		console.log(`Local audio ${this.isAudioMuted ? 'muted' : 'unmuted'}`);
 	} catch (error) {
 		console.error(error);
@@ -92,7 +96,7 @@ async toggleMuteAudio() {
 async toggleMuteVideo() {
 	try {
 		this.isVideoMuted = !this.isVideoMuted;
-		await JMClient.muteLocalVideo(this.isVideoMuted);
+		await this.jmClient.muteLocalVideo(this.isVideoMuted);
 		console.log(`Local video ${this.isVideoMuted ? 'muted' : 'unmuted'}`);
 	} catch (error) {
 		console.error(error);
