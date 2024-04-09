@@ -1,6 +1,18 @@
 import { Component } from '@angular/core';
-import { EventManager, IJMRemotePeer, JMClient, IJMInfoEventTypes, IJMMediaSetting, IJMJoinMeetingParams, IJMLocalAudioTrack, IJMLocalPeer, IJMLocalScreenShareTrack, IJMLocalVideoTrack, IJMPreviewManager, IJMRemoteAudioTrack, IJMRemoteScreenShareTrack, IJMRemoteVideoTrack, IJMRequestMediaType } from '@jiomeet/core-sdk-web';
+import { EventManager, IJMRemotePeer, JMClient, IJMInfoEventTypes, IJMMediaSetting, IJMJoinMeetingParams, IJMLocalAudioTrack, IJMLocalPeer, IJMLocalScreenShareTrack, IJMLocalVideoTrack, IJMPreviewManager, IJMRemoteAudioTrack, IJMRemoteScreenShareTrack, IJMRemoteVideoTrack, IJMConnectionStateEvent, IJMRequestMediaType } from '@jiomeet/core-sdk-web';
 import { async } from 'rxjs';
+
+
+// const meetingData = {
+// 	meetingId: "1234",
+// 	meetingPin: "abc",
+// 	userDisplayName: "Rohan",
+// 	config: {
+// 	  userRole: "host" | "audience" | "speaker",
+// 	  token: String,
+// 	}
+// }
+
 
 @Component({
   selector: 'app-main-video-call',
@@ -11,6 +23,10 @@ import { async } from 'rxjs';
 })
 export class MainVideoCallComponent {
 
+
+	
+	
+
 isAudioMuted = true;
 isVideoMuted = true;
 remotePeers!: IJMRemotePeer[];
@@ -19,8 +35,15 @@ roomMediaSetting!: IJMMediaSetting;
 
 jmClient = new JMClient();
 
+// remotePeers = this.jmClient.remotePeers;
+
+// ngOnInit(){
+// 	console.log('he');
+// }
+
 // Register event before calling join meeting
 unsubscribe = EventManager.onEvent(async (eventInfo) => {
+	
 	const { data } = eventInfo;
 	switch (eventInfo.type) {
 		case IJMInfoEventTypes.PEER_JOINED:
@@ -29,7 +52,7 @@ unsubscribe = EventManager.onEvent(async (eventInfo) => {
 				console.log('A new peer has joined the meeting:', remotePeer);
 			});
 			break;
-		case IJMInfoEventTypes.PEER_UPDATED:
+		case 'PEER_UPDATED':
 			const { remotePeer, updateInfo } = data;
 			const { action, value } = updateInfo;
 			if (action === 'AUDIO_MUTE' && value === false) {
@@ -53,7 +76,7 @@ unsubscribe = EventManager.onEvent(async (eventInfo) => {
 				}
 			}
 			break;
-		case IJMInfoEventTypes.PEER_LEFT:
+		case 'PEER_LEFT':
 			const { remotePeers } = data;
 			remotePeers.forEach((remotePeer: any) => {
 				console.log('A peer has left the meeting:', remotePeer);
