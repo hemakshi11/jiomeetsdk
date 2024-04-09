@@ -43,7 +43,7 @@ export class MediaserviceService {
   private localParticipant$: Subject<any> = new Subject();
 
 
- 
+
 
 
   constructor(private router: Router) {
@@ -312,7 +312,7 @@ export class MediaserviceService {
 
         })
 
-        .catch(() => {});
+        .catch(() => { });
 
     } catch (error) {
 
@@ -494,7 +494,7 @@ export class MediaserviceService {
 
         .muteLocalAudio(this.audioIsMute)
 
-        .then(() => {})
+        .then(() => { })
 
         .catch(() => {
 
