@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 
 import { EventManager, JMClient, IJMRemotePeer } from '@jiomeet/core-sdk-web';
 
-// import { IJM_EVENTS } from '@jiomeet/core-sdk-web/IJM-EVENTS';
+import { IJM_EVENTS } from '../constants';
 
 import { BehaviorSubject, Subject } from 'rxjs';
 
 import { Router } from '@angular/router';
+
 
 
 
@@ -15,17 +16,6 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 
 })
-
-
-const IJM_EVENTS = {
-  PEER_JOINED:"PEER_JOINED",
-  PEER_LEFT:"PEER_LEFT",
-  PEER_UPDATED:"PEER_UPDATED",
-  DEVICE_UPDATED:"DEVICE_UPDATED",
-  DOMINANT_SPEAKER:"DOMINANT_SPEAKER",
-  NETWORK_QUALITY:"NETWORK_QUALITY"
-
-}
 
 
 export class MediaserviceService {
@@ -418,7 +408,7 @@ export class MediaserviceService {
 
 
 
-  mapQualityLevel(uplink, downlink) {
+  mapQualityLevel(uplink: number, downlink: number) {
 
     const maxQuality = Math.max(uplink, downlink);
 
@@ -532,7 +522,7 @@ export class MediaserviceService {
 
     try {
 
-      this.audioIsMute = this.getLocalUser().audioMuted;
+      this.audioIsMute = this.getLocalUser()!.audioMuted;
 
       this.jmClient
 
