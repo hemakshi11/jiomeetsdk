@@ -5,9 +5,13 @@
         </div>
 
         <div class="video-controls">
-            <mat-icon>mic</mat-icon>
-            <mat-icon>camera_alt</mat-icon>
+            <mat-icon *ngIf="isUnMuted()" >mic</mat-icon>
+            <mat-icon *ngIf="isMuted()" >mic_off</mat-icon>
+            <mat-icon *ngIf="isVideoOn()" >videocam</mat-icon>
+            <mat-icon *ngIf="isVideoOff()" >videocam_off</mat-icon>
             <mat-icon>camera_rear</mat-icon>
+            <mat-icon *ngIf="isChatOff()" >chat</mat-icon>
+            <mat-icon *ngIf="isChatOn()" >arrow_back</mat-icon>
         </div>
     </div>
 </div>

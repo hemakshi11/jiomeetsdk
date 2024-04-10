@@ -13,7 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './main-video-call.component.css'
 })
 export class MainVideoCallComponent {
-
-
+  
+  
 
 }
