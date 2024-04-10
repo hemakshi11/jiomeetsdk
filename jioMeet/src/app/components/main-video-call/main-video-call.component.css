@@ -24,3 +24,13 @@
     display: flex;
     gap: 20px;
 }
+
+mat-icon:hover{
+    background-color: blueviolet;
+    transition: 0.2s ease;
+}
+
+mat-icon:active{
+    border: 1px solid blueviolet;
+    border-radius: 5px;
+}
