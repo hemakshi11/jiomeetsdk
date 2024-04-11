@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon'
 import { MainVideoCallComponent } from './components/main-video-call/main-video-call.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
+
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration(), provideAnimationsAsync()]
+  providers: [provideRouter(routes), provideClientHydration(), provideAnimationsAsync(), ]
 };
