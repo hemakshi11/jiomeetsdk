@@ -4,7 +4,7 @@ import { Loader } from './loader';
 
 @Component({
   selector: 'app-loader',
-  standalone:true,
+  // standalone:true,
   templateUrl: './loader.component.html',
   styleUrls: ['./loader.component.scss'],
 })

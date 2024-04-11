@@ -3,27 +3,19 @@ import { EventManager, IJMRemotePeer, JMClient, IJMInfoEventTypes, IJMMediaSetti
 import { async } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { MediaserviceService } from '../../services/mediaservice.service';
-<<<<<<< Updated upstream
 import { LoaderComponent } from '../loader/loader.component';
 import { LoaderService } from '../loader/loader.service';
 import {CommonModule} from '@angular/common';
 
 
-=======
->>>>>>> Stashed changes
 
 @Component({
   selector: 'app-main-video-call',
-  standalone: true,
-<<<<<<< Updated upstream
-  imports: [MatIconModule, LoaderComponent, CommonModule],
-  providers: [
-    LoaderService, MediaserviceService
-  ],
-=======
-  imports: [MatIconModule],
-  providers:[MediaserviceService],
->>>>>>> Stashed changes
+  // standalone: true,
+  // imports: [MatIconModule, LoaderComponent, CommonModule],
+  // providers: [
+  //   LoaderService, MediaserviceService
+  // ],
   templateUrl: './main-video-call.component.html',
   styleUrl: './main-video-call.component.css'
 })
@@ -48,11 +40,11 @@ export class MainVideoCallComponent{
 		}	
 	}
 
-  // async toggleMic(){
-  //   await this.mediaservice.toggleLocalMicStatus()
-  // }
+  async toggleMic(){
+    await this.mediaservice.toggleLocalMicStatus()
+  }
 
-  // async toggleVideo() {
-  //   await this.mediaservice.toggleVideoStatus();
-  // }
+  async toggleVideo() {
+    await this.mediaservice.toggleVideoStatus();
+  }
 }
