@@ -1,22 +1,14 @@
 import { Injectable } from '@angular/core';
-
 import { EventManager, JMClient, IJMRemotePeer } from '@jiomeet/core-sdk-web';
-
 import { IJM_EVENTS } from '../constants';
-
 import { BehaviorSubject, Subject } from 'rxjs';
-
 import { Router } from '@angular/router';
-
-
-
 
 @Injectable({
 
   providedIn: 'root',
 
 })
-
 
 export class MediaserviceService {
 
@@ -296,13 +288,14 @@ export class MediaserviceService {
       this.audioIsMute = !this.audioIsMute;
       await this.preview
         .muteLocalAudio(this.audioIsMute)
-        .then(() => {})
-        .catch(() => {
+        .catch((error: any) => {
+          console.log('Error while toggling local microphone:', error);
           this.audioIsMute = !this.audioIsMute;
         });
 
-    } catch {
-      console.log('error while mic switching');
+    } catch(error) {
+      console.log('error while mic switching',error);
+      this.audioIsMute = !this.audioIsMute;
     }
   }
 
